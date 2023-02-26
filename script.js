@@ -1,5 +1,7 @@
 //let text = ["Hello", "I", "am", "a", "beautiful", "animated", "text"];
-let text = ["Goedemiddag", "en", "welkom", "bij", "de", "monthly", "van", "februari"];
+let text = ["Welkom", "bij", "de", "monthly", "van", "februari"];
+// text = ["☰", "✖", "☰", "✕", "☰", "✖", "☰", "✕",]
+const inkBlobs = ["⬤","⚫","☁"]
 const interval = 750;
 const wait = 200;
 const text1 = document.getElementById("blobText1");
@@ -7,38 +9,40 @@ const text2 = document.getElementById("blobText2");
 const text3 = document.getElementById("blobText3");
 const text4 = document.getElementById("blobText4");
 
-const elementArray = [text1, text2, text3, text4];
+const elementArray = [text1, text2];
 
 
 start();
 
 function start() {
   setTimeout(function() {
-    toggleBlobby();
-  }, interval/2);
-  setTimeout(function() {
-    toggleBlobby();
-  }, interval*0.9);
-  setTimeout(function() {
-    placeAllWords();
-  }, interval+interval*1.2);
+    placeAllWords(true);
+  }, interval);
 }
 
-function placeAllWords() {
+function placeAllWords(withink = false) {
+  if (withink) 
+     text = inkBlobs.concat(text);
   elementArray[1].classList.add("blobby");
-  elementArray[3].classList.add("blobby");
 
   for (let i = 0; i < text.length; i++) {
     let word = text[i];
     let element = elementArray[i%2];
-    let element2 = elementArray[i%2+2];
+    let delay = calculateDelay(i,withink);
     setTimeout( function() {
-      setWordToElement(word,element,element2)
-    }, i*interval*2)
+      setWordToElement(word,element)
+    }, delay)
     
   }
 }
 
+function calculateDelay(i,withink) {
+  let delay = i*interval*2;
+  if (!withink) return delay;
+  if (i>2) return delay - interval*4;
+  return delay /3;
+
+}
 
 function setWordToElement(word, ...elements) {
   elements.forEach(function(element) {
