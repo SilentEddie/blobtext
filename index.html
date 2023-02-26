@@ -9,18 +9,67 @@
   <title>BlobText</title>
 </head>
 <body>
-  <div class="main container">
-    <div id="blobText-wrapper">
-      <div id="blobTexts">
-        <div id="blobText1" class="blobText">
-          &nbsp;
-        </div>
-        <div id="blobText2" class="blobText">
-           &nbsp;
-        </div>
+  <div class="main container distorted">
+    <div class="blobText-wrapper">
+      <div id="blobText1" class="blobText first ">
+        &nbsp;
+      </div>
+      <div id="blobText2" class="blobText second blobby">
+         &nbsp;
+      </div>
+    </div>
+    <div class="blobText-wrapper">
+      <div id="blobText3" class="blobText first">
+        •
+      </div>
+      <div id="blobText4" class="blobText second blobby">
+        &#11044
+      </div>
+      <div class="ball">
+        
       </div>
     </div>
   </div>
- 
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+
+
+      <filter id="squiggly-0">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" seed="3" />
+        <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="70" />
+      </filter>
+      <filter id="squiggly-1">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.03 0.07" numOctaves="1" result="noise" seed="4" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="70" />
+      </filter>
+      <filter id="squiggly-2">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.03 0.07" numOctaves="1" result="noise" seed="4" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="60" />
+      </filter>
+      <filter id="squiggly-3">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.03 0.065" numOctaves="1" result="noise" seed="4" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="50" />
+      </filter>
+      <filter id="squiggly-4">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="1" result="noise" seed="4" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="40" />
+      </filter>
+      <filter id="squiggly-5">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.035 0.055" numOctaves="1" result="noise" seed="4" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="30" />
+      </filter>
+      <filter id="squiggly-6">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.04 0.05" numOctaves="1" result="noise" seed="4" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="30" />
+      </filter>
+      <filter id="squiggly-7">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.045 0.045" numOctaves="1" result="noise" seed="4" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" />
+      </filter>
+      <filter id="squiggly-8">
+        <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.05 0.04" numOctaves="1" result="noise" seed="4" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" />
+    </defs>
+  </svg>
 </body>
 </html>

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: nicefont;
+  src: url(Roboto-Bold.ttf);
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -6,73 +11,130 @@ body {
 .container {
   width: 100%;
   height: 98vh;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
+  align-content: start;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr
 }
 
-#blobText-wrapper {
+.blobText-wrapper {
+  height: 11em;
   background-color: #fff;
   padding: 3em;
-  filter: contrast(1);
-  transition: filter 1.5s linear;
+  filter: contrast(25);
+  transition: filter 1s ease-in-out 0.3s;
 }
 
-#blobText-wrapper.blobbified {
-  filter: contrast(50);
-  transition: filter 1.3s linear;
-}
-
-#blobTexts {
+/* #blobTexts {
   padding: 3em;
   background-color: #ffffffff;
   filter: blur(0px);
-  transition: filter 1.5s ease-in-out 0.3s;
-}
-
-.blobbified #blobTexts{
-  filter: blur(15px);
-  transition: filter 1.5s ease-in-out 0.3s;
-}
-
+  transition: filter 0.75s linear 0.75s;
+} */
 
 .blobText {
+  letter-spacing:  0.04em;
   height: 1.5em;
-  font-family: 'Roboto', sans-serif;
-  font-size: 6em;
+  font-family: 'nicefont','Roboto', sans-serif;
+  font-size: 10em;
   font-weight: 900;
   color: #000;
-  background-color: #ffffffff;
+  background-color: #ffffff00;
   letter-spacing: 0.1em;
   text-align: center;
   position: relative;
+  animation: blobbify 0.75s linear forwards;
 }
 
-#blobText1 {
-  z-index: 1;
-  background-color: #ffffffff;
-  transition: background-color 1s ease-in-out 0.3s;
+.blobText.blobby {
+  animation: unblobbify 0.75s linear forwards;
 }
 
-.blobbified #blobText1 {
-  background-color: #ffffff00;
-  transition: background-color 1s ease-in-out 0.5s;
+#blobText3, #blobText4 {
+  animation: blobbify2 0.75s linear forwards;
 }
 
+#blobText3.blobby, #blobText4.blobby {
+  animation: unblobbify2 0.75s linear forwards;
+}
 
-#blobText2 {
+.blobText.second {
   top: -1.5em;
   z-index: 0;
-  transform-origin: center;
-  transform: scaleX(0.1);
-  transition: transform 0.8s linear;
 }
 
-.blobbified #blobText2 {
-  transform-origin: center;
-  transform: scaleX(1);
-  transition: transform 1.5s linear 0.1s;
+.ball {
+  font-size: 10em;
+  position: relative;
+  margin: auto;
+  top: -2.85em;
+  width: 0.7em;
+  height: 0.7em;
+  border: #303030 0.1em solid;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0;
+}
+
+@keyframes blobbify 
+{
+  0% {filter:   blur(0px); transform: scaleX(1);color: #000000; z-index: 1;}
+  10% {filter:  blur(3px);  transform: scaleX(1);    color: #000000;   z-index: 1;}
+  20% {filter:  url("#squiggly-8") blur(5px);  transform: scaleX(1);    color: #000000;   z-index: 1;}
+  30% {filter:  url("#squiggly-7") blur(6px);  transform: scaleX(0.97); color: #000000;   z-index: 1;}
+  40% {filter:  url("#squiggly-6") blur(7px); transform: scaleX(0.95);  color: #000000;   z-index: 1;}
+  50% {filter:  url("#squiggly-5") blur(8px); transform: scaleX(0.92);   color: #050505;   z-index: 0;}
+  60% {filter:  url("#squiggly-4") blur(9px); transform: scaleX(0.88);  color: #101010;   z-index: 0;} 
+  70% {filter:  url("#squiggly-3") blur(10px); transform: scaleX(0.83);  color: #202020;   z-index: 0; }
+  80% {filter:  url("#squiggly-2") blur(11px); transform: scaleX(0.72);  color: #303030;   z-index: 0;  }
+  90% {filter:  url("#squiggly-1") blur(14px); transform: scale(0.70,0.8);  color: #606060e0; z-index: 0;}
+  100% {filter: url("#squiggly-0") blur(14px); transform: scale(0.6, 0.7); color: #ffffff00; z-index: 0; }
+}
+
+@keyframes unblobbify {
+  0% {filter:   url("#squiggly-0") blur(14px); transform: scale(0.6,0.7); color: #ffffff00; z-index: 0;}
+  10% {filter:  url("#squiggly-1") blur(14px); transform: scale(0.7, 0.8);  color: #606060e0; z-index: 0;}
+  20% {filter:  url("#squiggly-2") blur(11px); transform: scaleX(0.72);  color: #303030;   z-index: 0; }
+  30% {filter:  url("#squiggly-3") blur(10px); transform: scaleX(0.83);  color: #202020;   z-index: 0;}
+  40% {filter:  url("#squiggly-4") blur(9px); transform: scaleX(0.88);  color: #101010;   z-index: 0;}
+  50% {filter:  url("#squiggly-5") blur(8px); transform: scaleX(0.92);   color: #050505;   z-index: 0;}
+  60% {filter:  url("#squiggly-6") blur(7px); transform: scaleX(0.95);  color: #000000;   z-index: 1;}
+  70% {filter:  url("#squiggly-7") blur(6px);  transform: scaleX(0.97); color: #000000;   z-index: 1;}
+  80% {filter:  url("#squiggly-8") blur(5px);  transform: scaleX(1);    color: #000000;   z-index: 1;}
+  90% {filter:  blur(3px);  transform: scaleX(1);    color: #000000;       z-index: 1;}
+  100% {filter: blur(0px); transform: scaleX(1);color: #000000; z-index: 1;}
   
 }
 
 
+@keyframes blobbify2
+{
+  0%  {filter:                     blur(0px);  z-index: 1; letter-spacing: 0.04em;}
+  10% {filter:                     blur(4px);  z-index: 1; letter-spacing: 0.03em;}
+  20% {filter:  url("#squiggly-8") blur(8px);  z-index: 1; letter-spacing: 0.02em;}
+  30% {filter:  url("#squiggly-7") blur(10px);  z-index: 1; letter-spacing: 0.01em;}
+  40% {filter:  url("#squiggly-6") blur(12px);  z-index: 1; letter-spacing: -0.01em;}
+  50% {filter:  url("#squiggly-5") blur(12px);  z-index: 0; letter-spacing: -0.02em;}
+  60% {filter:  url("#squiggly-4") blur(12px);  z-index: 0; letter-spacing: -0.05m; transform: scale(1,0.9); }
+  70% {filter:  url("#squiggly-3") blur(12px);  z-index: 0; letter-spacing: -0.1em;  transform: scale(1,0.72); }
+  80% {filter:  url("#squiggly-2") blur(12px);  z-index: 0; letter-spacing: -0.15em; transform: scale(1,1.4); opacity: 0.8;}
+  90% {filter:  url("#squiggly-1") blur(12px);  z-index: 0; letter-spacing: -0.18em; transform: scale(1,1.2); opacity: 0.3}
+  100% {filter: url("#squiggly-0") blur(13px);  z-index: 0; letter-spacing: -0.30em; transform: scale(1,0.55);opacity: 0;}
+}
+
+@keyframes unblobbify2 {
+  0% {filter:   url("#squiggly-0") blur(13px);  z-index: 0; letter-spacing: -0.30em; transform: scale(1,0.55);opacity: 0;}
+  10% {filter:  url("#squiggly-1") blur(12px);  z-index: 0; letter-spacing: -0.18em; transform: scale(1,1.2); opacity: 0.3}
+  20% {filter:  url("#squiggly-2") blur(12px);  z-index: 0; letter-spacing: -0.15em; transform: scale(1,1.4); opacity: 0.8;}
+  30% {filter:  url("#squiggly-3") blur(12px);  z-index: 0; letter-spacing: -0.1em;  transform: scale(1,0.72); }
+  40% {filter:  url("#squiggly-4") blur(12px);  z-index: 0; letter-spacing: -0.05em; transform: scale(1,0.9); }
+  50% {filter:  url("#squiggly-5") blur(12px);  z-index: 0; letter-spacing: -0.02em;}
+  60% {filter:  url("#squiggly-6") blur(12px);  z-index: 1; letter-spacing: -0.01em;}
+  70% {filter:  url("#squiggly-7") blur(10px);  z-index: 1; letter-spacing: 0.01em;}
+  80% {filter:  url("#squiggly-8") blur(8px);   z-index: 1; letter-spacing: 0.02em;}
+  90% {filter:                     blur(4px);   z-index: 1; letter-spacing: 0.03em;}
+  100% {filter:                    blur(0px);   z-index: 1; letter-spacing: 0.04em;}
+  
+}
